@@ -28,7 +28,7 @@ namespace Aijko\SessionStorage;
 /**
  * @author Julian Kleinhans <julian.kleinhans@aijko.de>
  * @copyright Copyright belongs to the respective authors
- * @package session_storage
+ * @package Aijko\SessionStorage
  */
 class BackendStorage extends \Aijko\SessionStorage\AbstractStorage {
  
