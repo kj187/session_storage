@@ -146,6 +146,20 @@ class Storage implements \Aijko\SessionStorage\StorageInterface {
 		return $this->concreteSessionManager;
 	}
 
+	/**
+	 * @return string
+	 */
+	public function getSessionId() {
+		return $this->concreteSessionManager->getSessionId();
+	}
+
+	/**
+	 * @param string $id
+	 */
+	public function setSessionId($id) {
+		$this->concreteSessionManager->setSessionId($id);
+	}
+
 }
 
 ?>

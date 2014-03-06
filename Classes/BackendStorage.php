@@ -86,7 +86,21 @@ class BackendStorage extends \Aijko\SessionStorage\AbstractStorage {
 	public function getUser() {
 		return $this->getBackendUser();
 	}
- 
+
+	/**
+	 * @return string
+	 */
+	public function getSessionId() {
+		//return $this->getUser()->id;
+	}
+
+	/**
+	 * @param string $id
+	 */
+	public function setSessionId($id) {
+		//$this->getUser()->id = $id;
+	}
+
 }
 
 ?>

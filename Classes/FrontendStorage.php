@@ -81,6 +81,21 @@ class FrontendStorage extends \Aijko\SessionStorage\AbstractStorage {
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getSessionId() {
+		return $this->getFeUser()->id;
+	}
+
+	/**
+	 * @param string $id
+	 */
+	public function setSessionId($id) {
+		$this->getFeUser()->id = $id;
+		$this->getFeUser()->fetchSessionData();
+	}
+
+	/**
 	 * @param string $type
 	 */
 	protected function setUserDataChanged($type = 'ses') {

@@ -81,6 +81,16 @@ interface StorageInterface extends \TYPO3\CMS\Core\SingletonInterface {
 	 */
 	public function getUser();
 
+	/**
+	 * @return string
+	 */
+	public function getSessionId();
+
+	/**
+	 * @param string $id
+	 */
+	public function setSessionId($id);
+
 }
 
 ?>
