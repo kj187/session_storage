@@ -1,30 +1,39 @@
-Usage:
+## Usage
 
-Inject Storage
-
+### Inject Storage
+```php
 	/**
 	 * @var \Aijko\SessionStorage\Storage
 	 * @inject
 	 */
 	protected $sessionStorage;
-
-Alternative
+```
+####Alternative
+```php
 	$sessionStorage = $this->objectManager->get('Aijko\\SessionStorage\\Storage');
+```
 
-Use it like
 
-	String:
+### Use it like
+
+#### String
+```php
 	$this->sessionStorage->set('name', 'Julian Kleinhans');
-
-	Array:
+```
+#### Array
+```php
 	$this->sessionStorage->set('address', array(
 		'street' => 'Musterstr. 87',
 		'zip' => '12345'
 	));
+```
 
-	Object
+#### Object
+```php
 	$this->sessionStorage->set('address', new stdClass());
+```
 
-
-	Read:
+###Read
+```php
 	$this->sessionStorage->get('name');
+```
