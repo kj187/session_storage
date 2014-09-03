@@ -71,7 +71,7 @@ class Storage implements \Aijko\SessionStorage\StorageInterface {
 	 * @param mixed $data
 	 * @return boolean
 	 */
-	public function  isSerializable($data) {
+	public function isSerializable($data) {
 		return $this->concreteSessionManager->isSerializable($data);
 	}
 
@@ -161,5 +161,3 @@ class Storage implements \Aijko\SessionStorage\StorageInterface {
 	}
 
 }
-
-?>

@@ -78,32 +78,20 @@ abstract class AbstractStorage implements \Aijko\SessionStorage\StorageInterface
 	 * @param object $object
 	 * @param string $key
 	 * @param string $type
+	 * @param \Aijko\SessionStorage\FrontendStorage|\Aijko\SessionStorage\BackendStorage $parentObject
 	 * @return void
 	 * @throws \InvalidArgumentException
 	 */
-	public function storeObject($object, $key = NULL, $type = 'ses') {
+	protected function storeSerializedObject($object, $key = NULL, $type = 'ses', $parentObject) {
 		if (is_null($key)) {
 			$key = get_class($object);
 		}
 
 		if ($this->isSerializable($object)) {
-			$this->write($key, serialize($object), $type);
+			$parentObject->set($key, serialize($object), $type);
 		} else {
 			throw new \InvalidArgumentException(sprintf('The object %s is not serializable.', get_class($object)));
 		}
 	}
-
-	/**
-	 * Writes something to storage
-	 *
-	 * @param string $key
-	 * @param string $type
-	 * @return object
-	 */
-	public function getObject($key, $type = 'ses') {
-		return unserialize($this->read($key, $type));
-	}
  
 }
-
-?>

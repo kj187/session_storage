@@ -65,18 +65,21 @@ class FrontendStorage extends \Aijko\SessionStorage\AbstractStorage {
 	 * @return void
 	 */
 	public function set($key, $data, $type = 'ses') {
+		$this->setUserDataChanged($type);
 		$this->getFeUser()->setKey($type, $this->getKey($key), $data);
 		$this->getFeUser()->storeSessionData();
 	}
 
 	/**
+	 * Remove session-data and remove cookie if not logged in as the session data is removed as well
+	 *
 	 * @param string $key
 	 * @param string $type
 	 * @return void
 	 */
 	public function remove($key, $type = 'ses') {
 		if ($this->has($key, $type)) {
-			$this->write($key, NULL, $type);
+			$this->set($key, NULL, $type);
 		}
 	}
 
@@ -125,7 +128,33 @@ class FrontendStorage extends \Aijko\SessionStorage\AbstractStorage {
 	public function getUser() {
 		return $this->getFeUser();
 	}
- 
-}
 
-?>
+	/**
+	 * Writes a object to the session if the key is empty it used the classname
+	 *
+	 * @param object $object
+	 * @param string $key
+	 * @param string $type
+	 * @return void
+	 * @throws \InvalidArgumentException
+	 */
+	public function storeObject($object, $key = NULL, $type = 'ses') {
+		parent::storeSerializedObject($object, $key, $type, $this);
+	}
+
+	/**
+	 * Get object from storage
+	 *
+	 * @param string $key
+	 * @param string $type
+	 * @return object|NULL
+	 */
+	public function getObject($key, $type = 'ses') {
+		if (!$this->has($key, $type)) {
+			return NULL;
+		}
+
+		return unserialize($this->get($key, $type));
+	}
+
+}

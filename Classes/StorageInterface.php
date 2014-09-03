@@ -92,5 +92,3 @@ interface StorageInterface extends \TYPO3\CMS\Core\SingletonInterface {
 	public function setSessionId($id);
 
 }
-
-?>

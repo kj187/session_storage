@@ -101,6 +101,28 @@ class BackendStorage extends \Aijko\SessionStorage\AbstractStorage {
 		//$this->getUser()->id = $id;
 	}
 
-}
+	/**
+	 * Writes a object to the session if the key is empty it used the classname
+	 *
+	 * @param object $object
+	 * @param string $key
+	 * @param string $type
+	 * @return void
+	 * @throws \InvalidArgumentException
+	 */
+	public function storeObject($object, $key = NULL, $type = 'ses') {
+		parent::storeSerializedObject($object, $key, $type, $this);
+	}
 
-?>
+	/**
+	 * Get object from storage
+	 *
+	 * @param string $key
+	 * @param string $type
+	 * @return object
+	 */
+	public function getObject($key, $type = 'ses') {
+		return unserialize($this->get($key, $type));
+	}
+
+}
