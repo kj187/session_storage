@@ -1,5 +1,7 @@
 ## Usage
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/b/aijko/session_storage/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/b/aijko/session_storage/?branch=master)
+
 ### Inject Storage
 ```php
 	/**
